@@ -70,7 +70,7 @@
 
 **1. Clone the repository**
 ```bash
-git clone https://github.com/yourusername/omni-flow.git
+git clone https://github.com/olukoyamartinspeace-coder/omni-flow.git
 cd omni-flow
 ```
 
@@ -288,4 +288,5 @@ For issues or questions:
 ---
 
 **Built with ❤️ for BNB Chain Hackathon 2026**
+
 
