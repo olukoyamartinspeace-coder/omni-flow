@@ -1,0 +1,33 @@
+{
+  "name": "omni-flow",
+  "version": "1.0.0",
+  "description": "**OmniFlow** is a next-generation, quantum-resistant decentralized identity and authentication platform built for the **BNB Chain** ecosystem. It combines cutting-edge **post-quantum cryptography**, **multi-modal biometrics**, **DNA-based key recovery**, and **AI-powered execution** to create the most secure Web3 wallet and identity system ever built.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^6.1.0",
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "@nomiclabs/hardhat-etherscan": "^3.1.8",
+    "@nomiclabs/hardhat-waffle": "^2.0.6",
+    "@openzeppelin/contracts": "^5.4.0",
+    "chai": "^6.2.2",
+    "circomlib": "^2.0.5",
+    "dotenv": "^17.3.1",
+    "ethereum-waffle": "^4.0.10",
+    "ethers": "^6.16.0",
+    "hardhat": "^3.1.8",
+    "snarkjs": "^0.7.6"
+  },
+  "dependencies": {
+    "solc": "^0.8.20"
+  }
+}
