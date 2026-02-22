@@ -55,7 +55,7 @@
 | **Cryptography** | CRYSTALS-Dilithium, Kyber, SHA3-512 |
 | **AI/ML** | Python (Behavioral Analysis, Risk Scoring) |
 
-> **⚠️ Antigravity Rulebook Compliant**: No React/Vue/Angular. No Node.js backend. Local biometrics only. Quantum-first cryptography.
+
 
 ---
 
@@ -288,5 +288,6 @@ For issues or questions:
 ---
 
 **Built with ❤️ for BNB Chain Hackathon 2026**
+
 
 
