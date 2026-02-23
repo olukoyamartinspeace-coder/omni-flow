@@ -1,3 +1,4 @@
+<img width="1920" height="1046" alt="screencapture-127-0-0-1-5000-2026-02-16-11_20_53" src="https://github.com/user-attachments/assets/6ec762b7-9ed9-4389-ba63-6be32cf3f113" />
 # OmniFlow - Quantum-Resistant DeFi Identity Platform
 
 **OmniFlow** is a next-generation, quantum-resistant decentralized identity and authentication platform built for the **BNB Chain** ecosystem. It combines cutting-edge **post-quantum cryptography**, **multi-modal biometrics**, **DNA-based key recovery**, and **AI-powered execution** to create the most secure Web3 wallet and identity system ever built.
@@ -8,22 +9,26 @@
 
 ## 🚀 Features
 
+<img width="1920" height="912" alt="screencapture-localhost-5000-2026-02-09-14_16_28" src="https://github.com/user-attachments/assets/9610e99f-084f-4cb1-b2b8-01b6f6796a5b" />
 ### 🔐 Quantum-Resistant Security
 - **CRYSTALS-Dilithium-5** for digital signatures
 - **Kyber** for key encapsulation
 - Future-proof against quantum computing attacks
 
+<img width="1920" height="2042" alt="screencapture-localhost-5000-2026-02-09-14_16_40" src="https://github.com/user-attachments/assets/50b3168c-d859-4e23-98cd-79ad72e19112" />
 ### 👁️ Multi-Modal Biometric Authentication
 - **Iris scanning** with liveness detection
 - **Palm vein mapping** for uniqueness
 - **ECG heartbeat** patterns for anti-spoofing
 - **Behavioral analytics** (keystroke dynamics)
 
+<img width="1920" height="1001" alt="screencapture-localhost-5000-2026-02-09-14_17_17" src="https://github.com/user-attachments/assets/5239f75e-7a56-4682-8fde-59aeacc4e5e7" />
 ### 🧬 DNA-Based Key Recovery
 - Encode seed phrases into synthetic DNA sequences
 - Partner with **Twist Bioscience** for fragment synthesis
 - Ultimate backup with 1000+ year longevity
 - Quarterly verification with QR + UV photo
+<img width="1920" https://github.com/user-attachments/assets/0135a64e-bab1-4105-88b8-9ed34c8b6d6f"eight="912" alt="screencapture-localhost-5000-2026-02-09-14_17_35" src="h />
 
 ### 🌐 Metaverse Identity Bridge
 - Cross-platform identity using **Zero-Knowledge Proofs (ZKP)**
@@ -31,12 +36,14 @@
 - Asset unification across virtual worlds
 - **LayerZero** integration for seamless bridging
 
+<img width="1920" height="1058" alt="screencapture-localhost-5000-2026-02-09-14_17_56" sr="https://github.com/user-attachments/assets/ac11e478-0b99-46c4-8230-173f0eb7924d" />
 ### 🛡️ Security Command Center
 - Real-time threat intelligence dashboard
 - Emergency protocol management (wallet freeze, geofence)
 - 30-day **Dead Man's Switch** for inheritance
 - Comprehensive security audit trail
 
+<img width="1920" height="1180" alt="screencapture-127-0-0-1-5000-2026-02-16-12_59_59" src="https://github.com/user-attachments/assets/68b4e147-b31c-41ac-906b-151b02fd901b" />
 ### 🤖 AI Execution Engine
 - Autonomous **DeFi optimization** (yield farming, LP rebalancing)
 - Gas fee optimization
@@ -238,15 +245,7 @@ npx hardhat run scripts/deploy.js --network bnb_testnet
 **3. Update frontend configuration**
 Edit `frontend/js/app.js` to point to deployed contract addresses.
 
-### Production Checklist
 
-- [ ] Replace mock data with real database
-- [ ] Integrate actual biometric SDK (WebAuthn, FaceTec)
-- [ ] Deploy smart contracts to BNB Chain mainnet
-- [ ] Set up SSL certificate (HTTPS required for webcam access)
-- [ ] Configure environment variables
-- [ ] Enable CORS for production domain
-- [ ] Set up monitoring (error tracking, analytics)
 
 ---
 
@@ -288,6 +287,5 @@ For issues or questions:
 ---
 
 **Built with ❤️ for BNB Chain Hackathon 2026**
-
 
 
