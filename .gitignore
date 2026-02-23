@@ -9,15 +9,16 @@ dist/
 build/
 
 # Python
-__pycache__/
-*.py[cod]
-*$py.class
+**/__pycache__/
+**/*.py[cod]
+**/*$py.class
 venv/
 .venv/
 env/
 .env
-*.db
-*.sqlite3
+**/*.db
+**/*.sqlite3
+
 
 # Hardhat/Foundry
 artifacts/
