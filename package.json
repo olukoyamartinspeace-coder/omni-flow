@@ -1,0 +1,46 @@
+{
+  "name": "omni-flow",
+  "version": "1.0.0",
+  "description": "**OmniFlow** is a next-generation, quantum-resistant decentralized identity and authentication platform built for the **BNB Chain** ecosystem. It combines cutting-edge **post-quantum cryptography**, **multi-modal biometrics**, **DNA-based key recovery**, and **AI-powered execution** to create the most secure Web3 wallet and identity system ever built.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-chai-matchers": "^2.0.0",
+    "@nomicfoundation/hardhat-ethers": "^3.0.0",
+    "@nomicfoundation/hardhat-ignition": "^0.15.16",
+    "@nomicfoundation/hardhat-ignition-ethers": "^0.15.0",
+    "@nomicfoundation/hardhat-network-helpers": "^1.0.0",
+    "@nomicfoundation/hardhat-toolbox": "^6.1.0",
+    "@nomicfoundation/hardhat-verify": "^2.0.0",
+    "@nomicfoundation/ignition-core": "^0.15.15",
+    "@openzeppelin/contracts": "^5.4.0",
+    "@typechain/ethers-v6": "^0.5.0",
+    "@typechain/hardhat": "^9.0.0",
+    "@types/chai": "^4.2.0",
+    "@types/mocha": ">=9.1.0",
+    "@types/node": ">=18.0.0",
+    "chai": "^4.2.0",
+    "circomlib": "^2.0.5",
+    "dotenv": "^17.3.1",
+    "ethers": "^6.4.0",
+    "hardhat": "^2.28.0",
+    "hardhat-gas-reporter": "^1.0.8",
+    "snarkjs": "^0.7.6",
+    "solidity-coverage": "^0.8.1",
+    "ts-node": ">=8.0.0",
+    "typechain": "^8.3.0",
+    "typescript": ">=4.5.0"
+  },
+  "dependencies": {
+    "solc": "^0.8.20"
+  }
+}

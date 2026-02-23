@@ -1,0 +1,41 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.next/
+dist/
+build/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+.env
+*.db
+*.sqlite3
+
+# Hardhat/Foundry
+artifacts/
+cache/
+typechain-types/
+typechain/
+ignition/deployments/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Project Specific
+hardhat_error*.log
+biometric_engine.db
+cache/
+omni-flow/
+omni-flow1/
+

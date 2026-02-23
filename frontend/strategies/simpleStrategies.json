@@ -1,0 +1,69 @@
+{
+    "strategies": [
+        {
+            "id": "momentum_001",
+            "name": "BNB Momentum Scanner",
+            "description": "Detects short-term momentum in BNB price using RSI and volume analysis",
+            "confidence": 0.85,
+            "parameters": {
+                "rsi_period": 14,
+                "volume_threshold": 1.5,
+                "min_profit": 0.5
+            },
+            "execute": "Monitor BNB/USDC pair on PancakeSwap, buy when RSI < 30 and volume spikes"
+        },
+        {
+            "id": "arb_001",
+            "name": "Cross-DEX Arbitrage",
+            "description": "Identifies price differences between PancakeSwap, BakerSwap, and Biswap",
+            "confidence": 0.92,
+            "parameters": {
+                "min_profit": 0.8,
+                "max_slippage": 0.5,
+                "dexes": [
+                    "pancake",
+                    "baker",
+                    "biswap"
+                ]
+            },
+            "execute": "Monitor prices across DEXes, execute when profit > 0.8% after gas"
+        },
+        {
+            "id": "stable_001",
+            "name": "Stablecoin Yield Optimizer",
+            "description": "Moves funds to highest yield pool among USDC/USDT/BUSD",
+            "confidence": 0.78,
+            "parameters": {
+                "min_apy": 3.0,
+                "rebalance_threshold": 1.0
+            },
+            "execute": "Compare lending rates across protocols, allocate to highest APY"
+        }
+    ],
+    "risk_profiles": {
+        "conservative": {
+            "max_position": 10,
+            "min_confidence": 0.9,
+            "allowed_strategies": [
+                "stable_001"
+            ]
+        },
+        "moderate": {
+            "max_position": 25,
+            "min_confidence": 0.8,
+            "allowed_strategies": [
+                "momentum_001",
+                "stable_001"
+            ]
+        },
+        "aggressive": {
+            "max_position": 50,
+            "min_confidence": 0.7,
+            "allowed_strategies": [
+                "momentum_001",
+                "arb_001",
+                "stable_001"
+            ]
+        }
+    }
+}

@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OmniFlow | Adaptive Smart Contract Protocol</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-converter"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/face-detection"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_detection"></script>
+    <script src="js/quantumWalletService.js"></script>
+    <script src="js/biometricService.js"></script>
+    <script src="js/dnaService.js"></script>
+    <script src="js/dexAggregator.js"></script>
+    <script src="js/aiTradingService.js"></script>
+    <!-- Biometric Engine Phase 1 -->
+    <script src="js/biometrics/capture/sensor.js"></script>
+    <script src="js/biometrics/features/extractor.js"></script>
+    <script src="js/biometrics/ml/inference.js"></script>
+    <script src="js/biometrics/auth/enrollment_ui.js"></script>
+</head>
+
+<body>
+    <div class="background-globes">
+        <div class="globe globe-1"></div>
+        <div class="globe globe-2"></div>
+    </div>
+
+    <header>
+        <div class="logo">
+            <span class="logo-icon">◎</span>omniflow.net
+        </div>
+        <nav>
+            <a href="#dashboard" class="active">Dashboard</a>
+            <a href="#wallet">Quantum Wallet</a>
+            <a href="#biometrics">Biometrics</a>
+            <a href="#dna">DNA Backup</a>
+            <a href="#metaverse">Metaverse</a>
+            <a href="#security">Security</a>
+            <a href="#execution">AI Execution</a>
+        </nav>
+        <div class="user-profile">
+            <span class="status-indicator"></span>
+            <span id="wallet-address">Connect Wallet</span>
+            <button id="btn-disconnect" class="glow-btn"
+                style="display: none; height: 30px; line-height: 20px; font-size: 0.7rem; padding: 0 10px; margin-left: 10px; border-color: #ff0055; color: #ff0055;">Logout</button>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <!-- Connect Wallet View -->
+        <section id="connect-wallet-view" class="page active"
+            style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 80vh; text-align: center;">
+            <div class="glass-panel" style="padding: 60px; max-width: 600px;">
+                <h1 style="font-size: 3.5rem; margin-bottom: 20px;">Omni<span class="highlight">Flow</span></h1>
+                <p class="subtitle" style="font-size: 1.2rem; margin-bottom: 40px; color: var(--text-secondary);">
+                    Adaptive Intelligence for Quantum-Resistant DeFi
+                </p>
+                <button id="btn-connect-wallet" class="glow-btn" style="font-size: 1.2rem; padding: 15px 40px;">
+                    Connect Binance Web3 Wallet
+                </button>
+                <p style="margin-top: 20px; font-size: 0.8rem; color: var(--text-secondary);">
+                    By connecting, you agree to the <a href="#" style="color: var(--accent-color);">Terms of
+                        Service</a>.
+                </p>
+            </div>
+        </section>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="page" style="display: none;">
+            <div class="hero-section" style="margin-bottom: 30px;">
+                <h1>Quantum Wallet <span class="highlight">Dashboard</span></h1>
+                <p class="subtitle">Real-time Security Monitoring & Asset Management</p>
+            </div>
+
+            <!-- Top Row: Quantum Status & MFA -->
+            <div class="dashboard-grid-top"
+                style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px;">
+
+                <!-- Component 1: Quantum Status Monitor -->
+                <div class="glass-panel" style="text-align: center;">
+                    <h2>Quantum Security Status</h2>
+                    <div class="quantum-shield" id="quantum-shield-icon"
+                        style="font-size: 4rem; margin: 20px 0; color: var(--accent-color);">
+                        🛡️
+                    </div>
+                    <h3 id="quantum-status-text" style="font-size: 1.5rem; color: #fff;">Scanning...</h3>
+                    <p id="quantum-algo-text" style="color: var(--text-secondary);">Algorithm: --</p>
+                    <div class="migration-bar-container"
+                        style="margin-top: 20px; background: rgba(255,255,255,0.1); height: 8px; border-radius: 4px;">
+                        <div id="migration-progress"
+                            style="width: 0%; height: 100%; background: var(--accent-color); border-radius: 4px; transition: width 1s;">
+                        </div>
+                    </div>
+                    <p style="font-size: 0.8rem; margin-top: 5px;">Migration Progress</p>
+                </div>
+
+                <!-- Component 2: MFA Status -->
+                <div class="glass-panel" style="display: flex; flex-direction: column; align-items: center;">
+                    <h2>Multi-Factor Auth</h2>
+                    <div style="width: 200px; height: 200px; position: relative;">
+                        <canvas id="mfaChart"></canvas>
+                        <div
+                            style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+                            <span id="security-score"
+                                style="font-size: 1.5rem; font-weight: bold; color: #fff;">--</span><br>
+                            <span style="font-size: 0.7rem; color: var(--text-secondary);">Score</span>
+                        </div>
+                    </div>
+                    <div class="mfa-legend"
+                        style="margin-top: 15px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 0.8rem;">
+                        <span style="color: #36a2eb;">● Biometric</span>
+                        <span style="color: #ff6384;">● Behavioral</span>
+                        <span style="color: #ffcd56;">● DNA</span>
+                        <span style="color: #4bc0c0;">● Seed</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Row: Transactions & Quick Actions -->
+            <div class="dashboard-grid-bottom" style="display: grid; grid-template-columns: 2fr 1fr; gap: 30px;">
+
+                <!-- Component 3: Transaction Dashboard -->
+                <div class="glass-panel">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                        <h2>Recent Transactions</h2>
+                        <span class="live-indicator">● Live</span>
+                    </div>
+                    <table class="tx-table" style="width: 100%; text-align: left; border-collapse: collapse;">
+                        <thead>
+                            <tr style="border-bottom: 1px solid var(--glass-border); color: var(--text-secondary);">
+                                <th style="padding: 10px;">Type</th>
+                                <th style="padding: 10px;">Asset</th>
+                                <th style="padding: 10px;">Value</th>
+                                <th style="padding: 10px;">Security</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tx-list-body">
+                            <!-- Populated by JS -->
+                            <tr>
+                                <td colspan="4" style="text-align: center; padding: 20px;">Loading transactions...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Component 4: Quick Actions Panel -->
+                <div class="glass-panel">
+                    <h2>Quick Actions</h2>
+                    <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 20px;">Context-Aware
+                        Controls</p>
+
+                    <div id="quick-actions-grid" style="display: grid; gap: 15px;">
+                        <button class="glow-btn action-btn">➤ Send Assets</button>
+                        <button class="glow-btn action-btn">⇄ Swap Tokens</button>
+                        <button class="glow-btn action-btn" style="border-color: #ffcd56; color: #ffcd56;">⚡ Bridge
+                            Assets</button>
+                        <button class="glow-btn action-btn" style="border-color: #ff0055; color: #ff0055;">⚠ Emergency
+                            Freeze</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quantum Wallet Section -->
+        <section id="wallet" class="page" style="display: none;">
+            <div class="glass-panel" style="max-width: 800px; margin: 0 auto;">
+                <h1>Quantum ID <span class="highlight">Generation</span></h1>
+                <p>Generate your post-quantum cryptographic identity (Dilithium + Kyber).</p>
+
+                <div class="action-area" style="margin-top: 30px; text-align: center;">
+                    <button id="btn-gen-identity" class="glow-btn">Initialize Quantum Identity</button>
+                </div>
+
+                <div id="identity-result" class="code-block" style="display: none; margin-top: 30px; text-align: left;">
+                    <h3>Identity Created</h3>
+                    <div class="key-display">
+                        <span class="label">Signing Key (Dilithium):</span>
+                        <code id="display-sign-pk">...</code>
+                    </div>
+                    <div class="key-display">
+                        <span class="label">Encryption Key (Kyber):</span>
+                        <code id="display-enc-pk">...</code>
+                    </div>
+                    <div class="alert-box">
+                        ⚠ Private keys generated securely in enclave. (Simulated)
+                    </div>
+                </div>
+
+                <div id="transfer-area"
+                    style="margin-top: 40px; padding-top: 40px; border-top: 1px solid var(--glass-border); display: none;">
+                    <h2>Post-Quantum <span class="highlight">Transfer</span></h2>
+                    <p style="margin-bottom: 20px;">Send assets secured by CRYSTALS-Dilithium signatures.</p>
+
+                    <div style="display: grid; gap: 15px;">
+                        <div class="input-group">
+                            <label>Recipient Address</label>
+                            <input type="text" id="tx-recipient" placeholder="0x..."
+                                style="width: 100%; padding: 10px; background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border); border-radius: 5px; color: white;">
+                        </div>
+                        <div class="input-group">
+                            <label>Amount (tBNB)</label>
+                            <input type="number" id="tx-amount" step="0.001" placeholder="0.1"
+                                style="width: 100%; padding: 10px; background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border); border-radius: 5px; color: white;">
+                        </div>
+                        <button id="btn-send-quantum" class="glow-btn" style="width: 100%;">Authorize Quantum
+                            Transfer</button>
+                    </div>
+
+                    <div id="tx-status" class="alert-box" style="display: none; margin-top: 20px;">
+                        Processing...
+                    </div>
+                </div>
+            </div>
+            </div>
+        </section>
+
+        <!-- Biometrics Page -->
+        <section id="biometrics" class="page" style="display: none;">
+            <div class="hero-section" style="margin-bottom: 30px;">
+                <h1>Biometric <span class="highlight">Authentication</span></h1>
+                <p class="subtitle">Multi-Factor Biometric Identity Verification</p>
+            </div>
+
+            <div id="biometric-enrollment-container">
+                <!-- Injected by enrollment_ui.js -->
+            </div>
+
+            <!-- Top Row: Webcam + Confidence Graph -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px;">
+
+                <!-- Webcam Interface -->
+                <div class="glass-panel">
+                    <h2>Live Capture</h2>
+                    <div class="webcam-container" style="position: relative; margin: 20px 0;">
+                        <video id="biometric-video"
+                            style="width: 100%; height: 300px; border-radius: 10px; display: none;" autoplay playsinline
+                            muted></video>
+                        <canvas id="biometric-canvas"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></canvas>
+                        <div id="webcam-placeholder"
+                            style="width: 100%; height: 300px; background: rgba(0,0,0,0.3); border-radius: 10px; display: flex; align-items: center; justify-content: center; border: 2px dashed var(--glass-border);">
+                            <span style="font-size: 1rem; opacity: 0.8; cursor: pointer;" id="btn-start-camera">Click to
+                                Start Secure Camera</span>
+                        </div>
+                        <div class="ir-overlay"
+                            style="position: absolute; top: 10px; right: 10px; padding: 5px 10px; background: rgba(255,0,0,0.2); border: 1px solid #ff0055; border-radius: 5px; font-size: 0.7rem;">
+                            IR Filter: Active
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
+                        <button class="glow-btn" id="btn-scan-iris">👁️ Iris</button>
+                        <button class="glow-btn" id="btn-scan-vein">🖐️ Vein</button>
+                        <button class="glow-btn" id="btn-scan-heart">❤️ Heart</button>
+                    </div>
+                </div>
+
+                <!-- Real-time Confidence Graph -->
+                <div class="glass-panel">
+                    <h2>Confidence Monitor</h2>
+                    <div style="height: 300px; position: relative;">
+                        <canvas id="confidenceChart"></canvas>
+                    </div>
+                    <div class="confidence-legend"
+                        style="margin-top: 10px; display: flex; justify-content: space-around; font-size: 0.8rem;">
+                        <span style="color: #36a2eb;">● Iris</span>
+                        <span style="color: #ff6384;">● Vein</span>
+                        <span style="color: #ffcd56;">● Heartbeat</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Row: Behavioral Heatmap + Spoof Log -->
+            <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 30px;">
+
+                <!-- Behavioral Heatmap -->
+                <div class="glass-panel">
+                    <h2>Behavioral Pattern Analysis</h2>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 15px;">Keystroke dynamics
+                        captured passively</p>
+                    <div id="heatmap-container" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px;">
+                        <!-- Generated by JS -->
+                    </div>
+                    <div
+                        style="display: flex; justify-content: space-between; margin-top: 10px; font-size: 0.7rem; color: var(--text-secondary);">
+                        <span>Low Activity</span>
+                        <span>High Activity</span>
+                    </div>
+                </div>
+
+                <!-- Spoof Detection Log -->
+                <div class="glass-panel">
+                    <h2>Spoof Detection Log</h2>
+                    <div id="spoof-log" style="max-height: 280px; overflow-y: auto;">
+                        <!-- Populated by JS -->
+                        <p style="text-align: center; padding: 20px; color: var(--text-secondary);">Loading...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DNA Backup Section -->
+        <section id="dna" class="page" style="display: none;">
+            <div class="glass-panel" style="max-width: 800px; margin: 0 auto;">
+                <h1>DNA <span class="highlight">Storage</span></h1>
+                <p>The Ultimate Backup: Encode your identity into synthetic biology.</p>
+
+                <div class="input-group" style="margin-top: 30px;">
+                    <label class="label">Enter Secret / Restoration Seed:</label>
+                    <input type="text" id="dna-secret-input" class="glass-input"
+                        placeholder="e.g. correct horse battery staple..." value="omni-flow-recovery-seed-8291">
+                </div>
+
+                <div class="action-area" style="margin-top: 20px; text-align: center;">
+                    <button id="btn-encode-dna" class="glow-btn">Encode to Biological Data</button>
+                </div>
+
+                <div id="dna-result" style="display: none; margin-top: 40px;">
+                    <h3>Genetic Sequence Preview</h3>
+                    <div class="dna-visualizer" id="dna-viz">
+                        <!-- CSS Helix Animation will go here -->
+                        <div class="helix-strand"></div>
+                    </div>
+
+                    <div class="code-block" style="margin-top: 20px;">
+                        <span class="label">Base Pair Sequence (ATCG):</span>
+                        <code id="display-dna-seq" style="color: #66fcf1; letter-spacing: 2px;"></code>
+                    </div>
+
+                    <div class="action-area" style="margin-top: 20px; text-align: center;">
+                        <button id="btn-order-dna" class="glow-btn" style="border-color: #ff00ff; color: #ff00ff;">Order
+                            Synthesis (Twist Bioscience)</button>
+                    </div>
+
+                    <div id="order-confirm" class="alert-box"
+                        style="display: none; border-color: #ff00ff; color: #ffcaea; background: rgba(255, 0, 255, 0.1);">
+                        Order Placed! ID: <span id="order-id-display"></span><br>
+                        Estimated Delivery: 14 Days
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Metaverse Portal Section -->
+        <section id="metaverse" class="page" style="display: none;">
+            <div class="glass-panel" style="max-width: 900px; margin: 0 auto;">
+                <h1>Metaverse <span class="highlight">Portal</span></h1>
+                <p>Teleport your Quantum Identity to other worlds.</p>
+
+                <div class="meta-grid"
+                    style="display: grid; grid-template-columns: 1fr 1fr; gap:30px; margin-top: 40px;">
+                    <!-- Card 1 -->
+                    <div class="meta-card glass-panel" style="text-align: center;">
+                        <h3>Decentraland (Polygon)</h3>
+                        <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 20px;">
+                            Sync your reputation and assets.
+                        </p>
+                        <button class="glow-btn btn-bridge" data-chain="polygon">Bridge Identity</button>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="meta-card glass-panel" style="text-align: center;">
+                        <h3>The Sandbox (Ethereum)</h3>
+                        <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 20px;">
+                            Link your unique OmniAvatar.
+                        </p>
+                        <button class="glow-btn btn-bridge" data-chain="ethereum">Bridge Identity</button>
+                    </div>
+                </div>
+
+                <div id="bridge-status" class="alert-box"
+                    style="display: none; margin-top: 30px; text-align: center; border-color: var(--accent-color); color: var(--accent-color); background: rgba(102, 252, 241, 0.1);">
+                    <span id="bridge-msg">Initiating Quantum Teleportation...</span>
+                    <!-- Simple progress bar -->
+                    <div
+                        style="width: 100%; height: 4px; background: rgba(255,255,255,0.1); margin-top: 10px; border-radius: 2px;">
+                        <div id="bridge-progress"
+                            style="width: 0%; height: 100%; background: var(--accent-color); transition: width 2s ease;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- === SECURITY PAGE === -->
+        <section id="security" class="page" style="display: none;">
+            <h1>🛡️ Security Command Center</h1>
+            <p class="subtitle">Threat Intelligence & Emergency Protocols</p>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px;">
+                <!-- Threat Dashboard -->
+                <div class="glass-panel">
+                    <h2>Threat Intelligence</h2>
+                    <div id="threat-dashboard" style="margin-top: 20px;">
+                        <div style="margin-bottom: 15px;">
+                            <strong>Personal Threat Level:</strong>
+                            <span id="threat-level" style="color: #0f0; font-size: 1.2rem;">LOW</span>
+                        </div>
+                        <div style="margin-bottom: 10px;">
+                            <strong>Recent Threats Blocked:</strong> <span id="threats-blocked">2</span>
+                        </div>
+                        <div>
+                            <strong>Global Alerts:</strong> <span id="global-alerts">3</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Emergency Protocols -->
+                <div class="glass-panel">
+                    <h2>Emergency Protocols</h2>
+                    <div style="display: grid; gap: 15px; margin-top: 20px;">
+                        <div class="glass-panel" style="padding: 15px; background: rgba(255,0,0,0.1);">
+                            <h3 style="font-size: 1rem; margin-bottom: 5px;">🔒 Wallet Freeze</h3>
+                            <p style="font-size: 0.8rem; color: var(--text-secondary);">Status: <span id="freeze-status"
+                                    style="color: #0f0;">Inactive</span></p>
+                        </div>
+                        <div class="glass-panel" style="padding: 15px; background: rgba(255,165,0,0.1);">
+                            <h3 style="font-size: 1rem; margin-bottom: 5px;">⏱️ Dead Man's Switch</h3>
+                            <p style="font-size: 0.8rem; color: var(--text-secondary);">Next Check: <span
+                                    id="dms-next">27 days</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Security Audit Log -->
+            <div class="glass-panel">
+                <h2>Security Audit Trail</h2>
+                <table id="audit-log-table" class="tx-table" style="width: 100%; margin-top: 20px;">
+                    <thead>
+                        <tr>
+                            <th>Timestamp</th>
+                            <th>Event</th>
+                            <th>Severity</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="audit-log-body">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Quantum Migration Progress -->
+            <div class="glass-panel" style="margin-top: 30px;">
+                <h2>Quantum Migration Progress</h2>
+                <div style="margin-top: 20px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                        <span>Migration to Post-Quantum Cryptography</span>
+                        <span id="migration-percent">100%</span>
+                    </div>
+                    <div
+                        style="width: 100%; height: 20px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden;">
+                        <div id="migration-bar"
+                            style="width: 100%; height: 100%; background: linear-gradient(90deg, #66fcf1, #45a29e); transition: width 0.3s;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- === AI EXECUTION PAGE === -->
+        <section id="execution" class="page" style="display: none;">
+            <div class="hero-section" style="margin-bottom: 30px;">
+                <h1>AI Execution <span class="highlight">Engine</span></h1>
+                <p class="subtitle">Autonomous DeFi Optimization & High-Frequency Risk Management</p>
+            </div>
+
+            <!-- Top Row: Market & Strategy -->
+            <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 30px; margin-bottom: 30px;">
+                <!-- Live Market & Confidence -->
+                <div class="glass-panel">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <h2>Live Market intelligence</h2>
+                        <span class="live-indicator">● SYNCED</span>
+                    </div>
+                    <div class="market-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div class="market-stat-card"
+                            style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 10px; border: 1px solid var(--glass-border);">
+                            <span style="display: block; font-size: 0.8rem; color: var(--text-secondary);">BNB
+                                PRICE</span>
+                            <span id="ai-bnb-price"
+                                style="font-size: 1.5rem; font-weight: bold; color: #4CAF50;">$0.00</span>
+                        </div>
+                        <div class="market-stat-card"
+                            style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 10px; border: 1px solid var(--glass-border);">
+                            <span style="display: block; font-size: 0.8rem; color: var(--text-secondary);">AI
+                                CONFIDENCE</span>
+                            <span id="ai-confidence-score"
+                                style="font-size: 1.5rem; font-weight: bold; color: var(--accent-color);">0%</span>
+                        </div>
+                        <div class="market-stat-card"
+                            style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 10px; border: 1px solid var(--glass-border);">
+                            <span style="display: block; font-size: 0.8rem; color: var(--text-secondary);">GAS
+                                PRICE</span>
+                            <span id="ai-gas-price" style="font-size: 1.5rem; font-weight: bold; color: #FF6B6B;">0.0
+                                Gwei</span>
+                        </div>
+                        <div class="market-stat-card"
+                            style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 10px; border: 1px solid var(--glass-border);">
+                            <span
+                                style="display: block; font-size: 0.8rem; color: var(--text-secondary);">VOLATILITY</span>
+                            <span id="ai-market-vol"
+                                style="font-size: 1.5rem; font-weight: bold; color: #FFC107;">LOW</span>
+                        </div>
+                    </div>
+
+                    <!-- Confidence Visualization -->
+                    <div style="margin-top: 30px;">
+                        <div
+                            style="display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.8rem;">
+                            <span>Signal Strength</span>
+                            <span id="signal-percent">0%</span>
+                        </div>
+                        <div
+                            style="width: 100%; height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden;">
+                            <div id="signal-bar"
+                                style="width: 0%; height: 100%; background: var(--accent-color); transition: width 0.5s;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Strategy Control -->
+                <div class="glass-panel">
+                    <h2>Strategy Config</h2>
+                    <div style="margin-top: 20px;">
+                        <label
+                            style="display: block; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 5px;">ACTIVE
+                            STRATEGY</label>
+                        <select id="select-ai-strategy" class="glass-input" style="width: 100%; margin-bottom: 20px;">
+                            <option value="momentum_001">📈 BNB Momentum Scanner</option>
+                            <option value="arb_001">🔄 Cross-DEX Arbitrage</option>
+                            <option value="stable_001">💵 Stablecoin Yield</option>
+                        </select>
+
+                        <label
+                            style="display: block; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 10px;">POSITION
+                            SIZE (BNB)</label>
+                        <div style="display: flex; gap: 10px; margin-bottom: 25px;">
+                            <input type="number" id="trade-amount-input" class="glass-input" value="0.05" step="0.01"
+                                style="flex: 1;">
+                            <button class="glow-btn" style="padding: 0 15px;">MAX</button>
+                        </div>
+
+                        <button id="btn-execute-ai-trade" class="glow-btn"
+                            style="width: 100%; height: 50px; font-size: 1.1rem;">🚀 EXECUTE AI TRADE</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Row: Trace Execution & History -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                <!-- Live Execution Feed -->
+                <div class="glass-panel">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                        <h2>Live Execution Trace</h2>
+                        <div id="ai-agent-status-tag"
+                            style="font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; background: rgba(0,255,0,0.1); color: #0f0; border: 1px solid #0f0;">
+                            ACTIVE</div>
+                    </div>
+                    <div id="execution-feed-console"
+                        style="height: 300px; background: rgba(0,0,0,0.3); border-radius: 10px; padding: 15px; font-family: 'Courier New', monospace; font-size: 0.8rem; overflow-y: auto; color: #a5f3fc;">
+                        <p style="color: #66d9ef;">[SYSTEM] AI Engine v1.0.4 initialized...</p>
+                        <p style="color: #a6e22e;">[AGENT] Searching for market anomalies...</p>
+                    </div>
+                </div>
+
+                <!-- Trade History -->
+                <div class="glass-panel">
+                    <h2>Recent AI Optimizations</h2>
+                    <div id="ai-trade-history" style="height: 320px; overflow-y: auto; margin-top: 15px;">
+                        <table style="width: 100%; text-align: left; border-collapse: collapse; font-size: 0.85rem;">
+                            <thead style="color: var(--text-secondary); border-bottom: 1px solid var(--glass-border);">
+                                <tr>
+                                    <th style="padding: 10px;">Time</th>
+                                    <th style="padding: 10px;">Strategy</th>
+                                    <th style="padding: 10px;">Amount</th>
+                                    <th style="padding: 10px;">Result</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ai-history-body">
+                                <!-- Populated by JS -->
+                                <tr>
+                                    <td colspan="4" style="text-align: center; padding: 20px; opacity: 0.5;">No trades
+                                        executed yet</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quantum Protection Banner -->
+            <div class="glass-panel"
+                style="margin-top: 30px; display: flex; align-items: center; gap: 15px; border-color: rgba(0, 212, 255, 0.3);">
+                <span style="font-size: 1.5rem;">⚛️</span>
+                <div>
+                    <h3 style="margin: 0; font-size: 1rem; color: var(--accent-color);">Quantum-Protected Execution</h3>
+                    <p style="margin: 0; font-size: 0.8rem; color: var(--text-secondary);">All trades are signed with
+                        CRYSTALS-Dilithium to prevent quantum computing front-running attacks.</p>
+                </div>
+            </div>
+        </section>
+
+        <script src="js/app.js"></script>
+</body>
+
+</html>
