@@ -1,0 +1,6 @@
+[project]
+name = "omni-flow"
+version = "0.1.0"
+description = "OmniFlow API"
+requires-python = ">=3.12"
+dependencies = []

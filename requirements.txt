@@ -2,7 +2,7 @@ Flask==3.0.0
 requests==2.31.0
 python-dotenv==1.0.0
 psycopg2-binary==2.9.9
-tensorflow==2.15.0
+tensorflow==2.16.1
 # tensorflowjs==4.17.0 (Incompatible with Windows due to uvloop dependency)
 scikit-learn==1.4.1.post1
 numpy==1.26.4
