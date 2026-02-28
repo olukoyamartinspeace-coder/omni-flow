@@ -280,6 +280,7 @@ This is a prototype demonstration. Contributions welcome for:
 ## 📞 Support
 
 For issues or questions:
+-Admin : admin@omniflow.sbs
 - GitHub Issues: [github.com/olukoyamartinspeace-coder/omni-flow/issues](https://github.com)
 - Documentation: See `implementation_plan.md` and `walkthrough.md`
 - BNB Chain Community: [https://www.bnbchain.org](https://www.bnbchain.org)
@@ -287,5 +288,6 @@ For issues or questions:
 ---
 
 **Built with ❤️ for BNB Chain Hackathon 2026**
+
 
 
